@@ -13,6 +13,13 @@ Nonetheless, you can use any code that allows you to extract the shapes using SA
 Once you generated your SAM predictions, please put them in the file structure described bellow
 
 ### Training instructions
+## Train the refinement network on source
+As explained in the article, the first step consists of training the refinement network on the source labels. To do so, choose the desired architecture and train it to refined the source sam_prediction, thanks to the available source labels.
+Then, save your weights in the main project path with the name of your choice.
+Finally, put this file name in the ```generate_slurm.sh``` script as the ```--pt_ckpt``` argument
+
+## Launch UDA training
+
 Once you have put your data in the structure discribed at the bottom of the repo, if you are using slurm, please modify the file ```generate_slurm.sh``` in order to generate automatically the slurm scripts to train on your own data.
 Then, you can launch ```sh generate_slurm.sh``` and it will generate you two files : ```launch_train_jobs.sh``` and ```launch_test_jobs.sh```. You can launch them first to train the model and then to test it.
 If you are not using slurm, you can manually use the python lauching commands that are in the ```generate_slurm.sh```
